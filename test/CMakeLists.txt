@@ -1,0 +1,11 @@
+SET(BINARY ${CMAKE_PROJECT_NAME}_tst)
+SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR} )
+
+file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
+SET(SOURCES ${TEST_SOURCES})
+
+add_executable(${BINARY} ${TEST_SOURCES})
+add_test(NAME ${BINARY} COMMAND ${BINARY})
+
+find_package(GTest CONFIG REQUIRED)
+target_link_libraries(${BINARY} PUBLIC GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
